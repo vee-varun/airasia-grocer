@@ -1,0 +1,634 @@
+[
+  {
+    "_version": 49,
+    "locale": "en-gb",
+    "uid": "bltcec5aa56ddeef7c2",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2021-06-01T07:01:07.764Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 18,
+    "link": "",
+    "sequence": 1,
+    "slug": "fresh-express-same-day-delivery",
+    "tags": [],
+    "title": "Fresh Express - Same Day Delivery",
+    "type": "carousel",
+    "updated_at": "2021-11-14T16:01:33.364Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-14T16:01:44.078Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 20,
+    "locale": "en-gb",
+    "uid": "bltd5e13147dfbf541b",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "tablet": null,
+      "mobile": null
+    },
+    "created_at": "2021-08-29T07:05:03.816Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 12,
+    "link": "",
+    "sequence": 2,
+    "slug": "2021-malaysian-favourites",
+    "tags": [],
+    "title": "Malaysian Favourites",
+    "type": "carousel",
+    "updated_at": "2021-11-19T04:15:44.612Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-19T04:15:50.611Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 73,
+    "locale": "en-gb",
+    "uid": "blt5080aa4c5c9fb1fb",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2020-12-03T01:14:37.584Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 18,
+    "link": "",
+    "sequence": 3,
+    "slug": "bountiful-veggies",
+    "tags": [],
+    "title": "Bountiful Veggies",
+    "type": "carousel",
+    "updated_at": "2021-11-19T04:15:04.618Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-19T04:15:09.658Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 79,
+    "locale": "en-gb",
+    "uid": "blte4b1701fb18e5661",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": {
+        "parent_uid": "blt85f19e82bf76de8f",
+        "uid": "blt5705fb44792fb089",
+        "created_by": "blta3c16211b85dd8ba",
+        "updated_by": "blta3c16211b85dd8ba",
+        "created_at": "2021-10-26T02:56:20.359Z",
+        "updated_at": "2021-10-26T02:56:20.359Z",
+        "content_type": "image/jpeg",
+        "file_size": "122941",
+        "filename": "Penang_Launch_carousel-banner_generic.jpg",
+        "title": "Penang_Launch_carousel-banner_generic.jpg",
+        "ACL": [],
+        "_version": 1,
+        "is_dir": false,
+        "tags": [],
+        "publish_details": {
+          "environment": "bltffd8391251d606fd",
+          "locale": "en-gb",
+          "time": "2021-10-26T02:57:05.679Z",
+          "user": "blta3c16211b85dd8ba"
+        },
+        "url": "https://images.contentstack.io/v3/assets/blt3ada34ac485961fd/blt5705fb44792fb089/61776e5490079752a47e97dd/Penang_Launch_carousel-banner_generic.jpg"
+      },
+      "mobile": {
+        "parent_uid": "blt85f19e82bf76de8f",
+        "uid": "blt031a98490be017f8",
+        "created_by": "blta3c16211b85dd8ba",
+        "updated_by": "blta3c16211b85dd8ba",
+        "created_at": "2021-10-26T02:56:19.773Z",
+        "updated_at": "2021-10-26T02:56:19.773Z",
+        "content_type": "image/jpeg",
+        "file_size": "51918",
+        "filename": "Penang_Launch_Week2_generic_Grocer-Hero_MB_(1).jpg",
+        "title": "Penang_Launch_Week2_generic_Grocer-Hero_MB_(1).jpg",
+        "ACL": [],
+        "_version": 1,
+        "is_dir": false,
+        "tags": [],
+        "publish_details": {
+          "environment": "bltffd8391251d606fd",
+          "locale": "en-gb",
+          "time": "2021-10-26T02:57:05.685Z",
+          "user": "blta3c16211b85dd8ba"
+        },
+        "url": "https://images.contentstack.io/v3/assets/blt3ada34ac485961fd/blt031a98490be017f8/61776e534307ab590944d21f/Penang_Launch_Week2_generic_Grocer-Hero_MB_(1).jpg"
+      },
+      "tablet": null
+    },
+    "created_at": "2020-12-16T08:01:38.644Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": true,
+    "limit": 18,
+    "link": "https://www.airasia.com/grocer/my/en/tag/penang-delivery?name=Great%20Deals%20from%20Penang%20Only%20Merchants\u0026tag_type=1",
+    "sequence": 4,
+    "slug": "frozen-seafood",
+    "tags": [],
+    "title": "Great Value Seafood",
+    "type": "carousel",
+    "updated_at": "2021-11-19T04:14:37.271Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-19T04:14:44.831Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 79,
+    "locale": "en-gb",
+    "uid": "bltc842ab53d0a52271",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2020-12-16T08:04:12.650Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 18,
+    "link": "",
+    "sequence": 5,
+    "slug": "fruits-paradise",
+    "tags": [],
+    "title": "Fruits Paradise",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:24:11.157Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:24:17.702Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 75,
+    "locale": "en-gb",
+    "uid": "blte35ba0cb8ac6e3b6",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2020-12-16T08:02:15.877Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 18,
+    "link": "",
+    "sequence": 5,
+    "slug": "meat-galore",
+    "tags": [],
+    "title": "Meat Galore",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:24:43.324Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:24:51.596Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 30,
+    "locale": "en-gb",
+    "uid": "blt35b1d7f0970dd401",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2021-04-12T16:43:38.325Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 12,
+    "link": "",
+    "sequence": 9,
+    "slug": "2021-fresheggs",
+    "tags": [],
+    "title": "Shop Farm Fresh Eggs",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:20:41.760Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:20:50.631Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 23,
+    "locale": "en-gb",
+    "uid": "bltce5cb2b9ebacaa29",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2021-06-29T05:04:41.343Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 18,
+    "link": "",
+    "sequence": 9,
+    "slug": "japan-feature",
+    "tags": [],
+    "title": "Itadakimasu: Great Japanese Cuisine",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:21:16.258Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:21:23.282Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 20,
+    "locale": "en-gb",
+    "uid": "blt9cc290e265d64d94",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": {
+        "parent_uid": "bltc8087e69f16790a5",
+        "uid": "blte4178cff254a3a47",
+        "created_by": "blta3c16211b85dd8ba",
+        "updated_by": "blta3c16211b85dd8ba",
+        "created_at": "2021-09-21T09:38:34.255Z",
+        "updated_at": "2021-09-21T09:38:34.255Z",
+        "content_type": "image/jpeg",
+        "file_size": "153490",
+        "filename": "Listino_Carousel_DS_(1).jpg",
+        "title": "Listino_Carousel_DS_(1).jpg",
+        "ACL": [],
+        "_version": 1,
+        "is_dir": false,
+        "tags": [],
+        "publish_details": {
+          "environment": "bltffd8391251d606fd",
+          "locale": "en-gb",
+          "time": "2021-09-21T09:41:44.245Z",
+          "user": "blta3c16211b85dd8ba"
+        },
+        "url": "https://images.contentstack.io/v3/assets/blt3ada34ac485961fd/blte4178cff254a3a47/6149a81a8440e97ef5827ff6/Listino_Carousel_DS_(1).jpg"
+      },
+      "mobile": {
+        "parent_uid": "bltc8087e69f16790a5",
+        "uid": "blt2f433f27184ee9c2",
+        "created_by": "blta3c16211b85dd8ba",
+        "updated_by": "blta3c16211b85dd8ba",
+        "created_at": "2021-09-21T09:38:34.076Z",
+        "updated_at": "2021-09-21T09:38:34.076Z",
+        "content_type": "image/jpeg",
+        "file_size": "45133",
+        "filename": "Listino_Carousel_MB_(1).jpg",
+        "title": "Listino_Carousel_MB_(1).jpg",
+        "ACL": [],
+        "_version": 1,
+        "is_dir": false,
+        "tags": [],
+        "publish_details": {
+          "environment": "bltffd8391251d606fd",
+          "locale": "en-gb",
+          "time": "2021-09-21T09:41:44.250Z",
+          "user": "blta3c16211b85dd8ba"
+        },
+        "url": "https://images.contentstack.io/v3/assets/blt3ada34ac485961fd/blt2f433f27184ee9c2/6149a81af725af79f53fd0f5/Listino_Carousel_MB_(1).jpg"
+      },
+      "tablet": null
+    },
+    "created_at": "2021-06-14T16:27:17.006Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": true,
+    "limit": 18,
+    "link": "https://www.airasia.com/grocer/my/en/merchant/listino",
+    "sequence": 10,
+    "slug": "farm-fresh-chicken",
+    "tags": [],
+    "title": "Shop Farm Fresh Chicken",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:19:02.486Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:19:15.190Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 21,
+    "locale": "en-gb",
+    "uid": "blt926de6b04b7180ce",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2021-06-14T16:26:48.493Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 18,
+    "link": "",
+    "sequence": 10,
+    "slug": "fresh-salmon",
+    "tags": [],
+    "title": "Shop Fresh Salmon, Rich in Omega 3 and DHA",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:20:09.291Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:20:19.619Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 10,
+    "locale": "en-gb",
+    "uid": "blt3275db511d6ee3a9",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "tablet": null,
+      "mobile": null
+    },
+    "created_at": "2021-08-04T05:04:55.215Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 12,
+    "link": "",
+    "sequence": 11,
+    "slug": "best-bundle",
+    "tags": [],
+    "title": "Best Bundle Deals",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:18:02.139Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:18:09.126Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 35,
+    "locale": "en-gb",
+    "uid": "blt7b0aa5aba4ffaecb",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2021-03-05T05:55:00.797Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 18,
+    "link": "",
+    "sequence": 12,
+    "slug": "50-off",
+    "tags": [],
+    "title": "Clearance Deals",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:14:12.525Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:14:22.772Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 23,
+    "locale": "en-gb",
+    "uid": "blt20f44da922a63f09",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2021-04-26T16:24:43.990Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 12,
+    "link": "",
+    "sequence": 13,
+    "slug": "whats-new",
+    "tags": [],
+    "title": "What's New This Week on Fresh",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:13:37.445Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:13:48.175Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 16,
+    "locale": "en-gb",
+    "uid": "blt7609ca4872dc2ad8",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2021-07-06T07:00:16.101Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 12,
+    "link": "",
+    "sequence": 13,
+    "slug": "korean-soju",
+    "tags": [],
+    "title": "Korean Soju (+21 above only)",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:09:05.615Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:09:18.675Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 28,
+    "locale": "en-gb",
+    "uid": "bltb25a54136f4cfc0f",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2021-01-26T00:04:02.066Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 12,
+    "link": "",
+    "sequence": 14,
+    "slug": "ourfarm",
+    "tags": [],
+    "title": "Buy Fresh from airasia farm",
+    "type": "carousel",
+    "updated_at": "2021-11-15T08:12:09.324Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-11-15T08:12:18.527Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 73,
+    "locale": "en-gb",
+    "uid": "blt4d194e7ebf09417b",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "mobile": null,
+      "tablet": null
+    },
+    "created_at": "2020-11-18T07:19:51.016Z",
+    "created_by": "blta0c39faab7666de0",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 18,
+    "link": "",
+    "sequence": 31,
+    "slug": "best-sellers",
+    "tags": [],
+    "title": "Best Sellers",
+    "type": "carousel",
+    "updated_at": "2021-10-05T04:52:47.206Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-10-05T04:52:50.904Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  },
+  {
+    "_version": 7,
+    "locale": "en-gb",
+    "uid": "blt5a16fef3a592d68c",
+    "ACL": {
+    },
+    "_in_progress": false,
+    "banner": {
+      "desktop": null,
+      "tablet": null,
+      "mobile": null
+    },
+    "created_at": "2021-07-21T10:19:47.441Z",
+    "created_by": "blta3c16211b85dd8ba",
+    "enable": true,
+    "is_show_banner": false,
+    "limit": 12,
+    "link": "",
+    "sequence": 40,
+    "slug": "fresh-pork-non-halal",
+    "tags": [],
+    "title": "Fresh Pork (Non Halal)",
+    "type": "carousel",
+    "updated_at": "2021-10-05T04:51:33.533Z",
+    "updated_by": "blta3c16211b85dd8ba",
+    "publish_details": {
+      "environment": "bltffd8391251d606fd",
+      "locale": "en-gb",
+      "time": "2021-10-05T04:51:36.486Z",
+      "user": "blta3c16211b85dd8ba"
+    }
+  }
+]
