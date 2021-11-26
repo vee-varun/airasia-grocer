@@ -84,6 +84,12 @@ Merchant and Store <- Types of vendor
 If store, then merchant URL redirected to below URL on the browser but not when you request through script.
 Ex. - https://www.airasia.com/grocer/my/en/merchant/bright-cow
 
+Two Cases
+1. Adding
+2. Updating
+
+Can add check in case of searching and adding new restaurant, that process those slugs which already 
+present in the store directory
 """
 
 """
@@ -98,3 +104,6 @@ RoadMap
 3. 
 """
 
+
+"https://bee.apiairasia.com/menu/v1/products-aa?store_uuids=835fe4e7-bc7f-47f3-8791-82fecc28aa35&type_id=1"
+"https://bee.apiairasia.com/menu/v1/products-aa?store_category_uuids=516328bd-3959-4ea1-97ba-18099e5b4c43&limit=20&store_uuids=835fe4e7-bc7f-47f3-8791-82fecc28aa35&type_id=1"

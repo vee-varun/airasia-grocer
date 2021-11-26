@@ -4,42 +4,65 @@ from API URL - https://bee.apiairasia.com/menu/v1/products-aa?type_id=1
 in one go and store the JSON response in a file,
 which will be further used to compile the Products data.
 """
+import glob
+import json
+import os
+from datetime import datetime, timezone
+from urllib.parse import urlencode
+import requests
 
-API_URL = "https://bee.apiairasia.com/menu/v1/products-aa?type_id=1"
+from constants import MAX_RETRY, EXTRACTED_STORES_DIRECTORY, EXTRACTED_PRODUCTS_DIRECTORY, REQ_HEADERS, \
+    MAX_CONSECUTIVE_FAIL_ALLOWED
 
-REQ_HEADERS = {
-    'Accept': '*/*',
-    'Accept-Encoding': 'gzip, deflate, br',
-    'Accept-Language': 'en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7,pt;q=0.6,de;q=0.5',
-    'Connection': 'keep-alive',
-    'Host': 'bee.apiairasia.com',
-    'Origin': 'https://www.airasia.com',
-    'Referer': 'https://www.airasia.com/',
-    'sec-ch-ua': '"Google Chrome";v="93", " Not;A Brand";v="99", "Chromium";v="93"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Linux"',
-    'Sec-Fetch-Dest': 'empty',
-    'Sec-Fetch-Mode': 'cors',
-    'Sec-Fetch-Site': 'cross-site',
-    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36',
-    'X-CHANNEL': '1',
-    'X-CLIENT-ID': '4415a5de-bb03-4cd7-b614-4b699ae83789',
-    'X-DEVICE-ID': '4415a5de-bb03-4cd7-b614-4b699ae83789',
-    'X-DEVICE-TYPE': 'phone',
-    'X-LANG': 'en',
-    'X-PLATFORM': 'WEBDESKTOP'
-}
+EXTRACT_FOR_ALL_STORES = True  # weather extract product for all the stores or only for the new ones
 
-MAX_RETRY = 3
+PRODUCTS_BASE_URL = 'https://bee.apiairasia.com/menu/v1/products-aa'
 
-retry = 0
-while retry < MAX_RETRY:
-    res = requests.get(API_URL, headers=headers)
-    if res.ok:
-        break
+extracted_stores = []
+for store_file_path in glob.glob(EXTRACTED_STORES_DIRECTORY+'/*.json'):
+    extracted_stores.append(store_file_path.split('/')[-1][:-5])
+
+stores_products_extracted = os.listdir(EXTRACTED_PRODUCTS_DIRECTORY)  # stores for which products already extracted
+if not EXTRACT_FOR_ALL_STORES:
+    # stores for which products to be extracted
+    stores_products_to_be_extracted = list(set(extracted_stores) - set(stores_products_extracted))
 else:
-    raise RuntimeError(f'Not able to request the API URL. Status: {res.status_code}')
+    stores_products_to_be_extracted = extracted_stores
 
-products = res.json()['data']
-if not products:
-    
+failed_requests = {}
+consecutive_failed = 0
+for slug in stores_products_to_be_extracted:
+    store_file_path = os.path.join(EXTRACTED_STORES_DIRECTORY, f'{slug}.json')
+    with open(store_file_path, 'r') as f:
+        store = json.load(f)
+    params = {
+        'type_id': 1,
+        'store_uuids': store['uuid']
+    }
+    products_url = PRODUCTS_BASE_URL + f'?{urlencode(params)}'
+    for _ in range(MAX_RETRY):
+        res = requests.get(products_url, headers=REQ_HEADERS)
+        print(res.status_code)
+        if res.ok:
+            consecutive_failed = 0
+            break
+    else:
+        failed_requests[products_url] = res.status_code
+        consecutive_failed += 1
+        if consecutive_failed == MAX_CONSECUTIVE_FAIL_ALLOWED:
+            raise RuntimeError(
+                f'Something wrong with the website. Failed to request {MAX_CONSECUTIVE_FAIL_ALLOWED} '
+                f'different URLs consecutively. {failed_requests}'
+            )
+        continue
+
+    products_data = {
+        'extracted_on': datetime.now(timezone.utc).strftime('%Y-%m-%dT%TZ'),
+        'products': res.json()['data']
+    }
+    file_path = os.path.join(EXTRACTED_PRODUCTS_DIRECTORY, f'{slug}.json')
+    with open(file_path, 'w') as f:
+        json.dump(products_data, f, indent=2)
+
+if failed_requests:
+    print(f'Failed Requests: {failed_requests}')
