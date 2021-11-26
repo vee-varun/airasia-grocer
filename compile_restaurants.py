@@ -6,13 +6,12 @@ import json
 import os
 from datetime import datetime
 
-from constants import COMPILED_RESTAURANTS_DIRECTORY, EXTRACTED_STORES_DIRECTORY
+from constants import COMPILED_RESTAURANTS_DIRECTORY, EXTRACTED_STORES_DIRECTORY, SOURCE, COUNTRY
 
 COMPILE_ALL = False   # if True then compile all the stores otherwise compile only the new ones
 
 STORE_BASE_URL = 'https://www.airasia.com/grocer/my/en/merchant/'
 
-COUNTRY = 'my'  # Malaysia
 CURRENCY = 'MYR'  # Malaysian Ringgit
 VENDOR_TYPE = 'Grocer'
 NULL_KEYS = [
@@ -71,7 +70,7 @@ for store_file_path in glob.glob(EXTRACTED_STORES_DIRECTORY+'/*.json'):
         store_url = f'{STORE_BASE_URL}/{slug}'
         restaurant = {
             'timestamp': store['extracted_on'],
-            'source': 'AirAsia Grocer',
+            'source': SOURCE,
             'country_code': COUNTRY.upper(),
             'url': store_url,
             'name': store.get('name'),
@@ -100,6 +99,7 @@ for store_file_path in glob.glob(EXTRACTED_STORES_DIRECTORY+'/*.json'):
 
 print(f'Total: {total}')
 print(f'Compiled: {compiled}')
+
 if restaurants:
     restaurants = json.loads(json.dumps(restaurants, sort_keys=True))  # sorting by key
     if not COMPILE_ALL:
@@ -111,6 +111,7 @@ if restaurants:
     print('='*100)
     print(json.dumps(restaurants[-1], indent=2))
 
-    myfilename = datetime.now().strftime("%Y%m%d")+"_airasia_"+COUNTRY+"_stores.txt"
+
+    myfilename = datetime.now().strftime("%Y%m%d")+f"_{SOURCE.lower()}_"+COUNTRY+"_stores.txt"
     with open(os.path.join(COMPILED_RESTAURANTS_DIRECTORY, myfilename), 'w') as f:
         f.write('\n'.join(map(json.dumps, restaurants)))

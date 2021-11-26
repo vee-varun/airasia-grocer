@@ -1,5 +1,7 @@
 import os
 
+SOURCE = 'AirAsia'
+COUNTRY = 'my'  # Malaysia
 REQ_HEADERS = {
     'Accept': '*/*',
     'Accept-Encoding': 'gzip, deflate, br',
