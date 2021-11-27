@@ -72,45 +72,49 @@ if stores_products_to_be_extracted:
     total = len(stores_products_to_be_extracted)
     print(f'No. of stores for which products are going to extract: {total}')  # noqa
     for slug in stores_products_to_be_extracted:
-        store_file_path = os.path.join(
-            EXTRACTED_STORES_DIRECTORY, f'{slug}.json'
-        )
-        with open(store_file_path, 'r') as f:
-            store = json.load(f)
-        params = {
-            'type_id': 1,
-            'store_uuids': store['uuid']
-        }
-        products_url = PRODUCTS_API_BASE_URL + f'?{urlencode(params)}'
-        for _ in range(MAX_RETRY):
-            res = requests.get(products_url, headers=REQ_HEADERS)
-            print(res.status_code)
-            if res.ok:
-                consecutive_failed = 0
-                break
-        else:
-            failed_requests[products_url] = res.status_code
-            consecutive_failed += 1
-            if consecutive_failed == MAX_CONSECUTIVE_FAIL_ALLOWED:
-                raise RequestException(
-                    f'URGENT: Something wrong with the website. '
-                    f'Failed to request {MAX_CONSECUTIVE_FAIL_ALLOWED} '
-                    f'different URLs consecutively.\n{failed_requests}'
-                )
-            continue
+        try:
+            store_file_path = os.path.join(
+                EXTRACTED_STORES_DIRECTORY, f'{slug}.json'
+            )
+            with open(store_file_path, 'r') as f:
+                store = json.load(f)
+            params = {
+                'type_id': 1,
+                'store_uuids': store['uuid']
+            }
+            products_url = PRODUCTS_API_BASE_URL + f'?{urlencode(params)}'
+            for _ in range(MAX_RETRY):
+                res = requests.get(products_url, headers=REQ_HEADERS)
+                if res.ok:
+                    consecutive_failed = 0
+                    break
+            else:
+                failed_requests[products_url] = res.status_code
+                consecutive_failed += 1
+                if consecutive_failed == MAX_CONSECUTIVE_FAIL_ALLOWED:
+                    raise RequestException(
+                        f'URGENT: Something wrong with the website. '
+                        f'Failed to request {MAX_CONSECUTIVE_FAIL_ALLOWED} '
+                        f'different URLs consecutively.\n{failed_requests}'
+                    )
+                continue
 
-        products_data = {
-            'extracted_on': (
-                datetime.now(timezone.utc).strftime('%Y-%m-%dT%TZ')
-            ),
-            'products': res.json()['data']
-        }
-        file_path = os.path.join(EXTRACTED_PRODUCTS_DIRECTORY, f'{slug}.json')
-        with open(file_path, 'w') as f:
-            json.dump(products_data, f, indent=2)
-        done += 1
-        if done % 10 == 0:
-            print(f'Done: [{done} - {total}]')
+            products_data = {
+                'extracted_on': (
+                    datetime.now(timezone.utc).strftime('%Y-%m-%dT%TZ')
+                ),
+                'products': res.json()['data']
+            }
+            file_path = os.path.join(EXTRACTED_PRODUCTS_DIRECTORY, f'{slug}.json')
+            with open(file_path, 'w') as f:
+                json.dump(products_data, f, indent=2)
+            done += 1
+            if done % 10 == 0:
+                print(f'Done: [{done} - {total}]')
+        except Exception as err:
+            raise Exception(
+                f'Got Error while extracting products for {slug}. Error: {err}'
+            )
     print(
         f'All the extracted stores have been kept '
         f'@ {EXTRACTED_STORES_DIRECTORY}'

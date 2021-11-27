@@ -10,6 +10,7 @@ import json
 import os
 import sys
 from datetime import datetime, timezone
+from time import sleep
 
 import requests
 from requests import RequestException
@@ -78,34 +79,39 @@ if stores_to_be_extracted:
     total = len(stores_to_be_extracted)
     print(f'Stores to be extracted: {total}')
     for slug in stores_to_be_extracted:
-        store_api_url = f'{STORE_API_BASE_URL}/{slug}'
-        for _ in range(MAX_RETRY):
-            res = requests.get(store_api_url, headers=REQ_HEADERS)
-            print(res.status_code)
-            if res.ok:
-                consecutive_failed = 0
-                break
-        else:
-            failed_requests[store_api_url] = res.status_code
-            consecutive_failed += 1
-            if consecutive_failed == MAX_CONSECUTIVE_FAIL_ALLOWED:
-                raise RuntimeError(
-                    f'URGENT: Something wrong with the website. '
-                    f'Failed to request {MAX_CONSECUTIVE_FAIL_ALLOWED} '
-                    f'different URLs consecutively. {failed_requests}'
-                )
-            continue
+        try:
+            store_api_url = f'{STORE_API_BASE_URL}/{slug}'
+            for _ in range(MAX_RETRY):
+                sleep(5)
+                res = requests.get(store_api_url, headers=REQ_HEADERS)
+                if res.ok:
+                    consecutive_failed = 0
+                    break
+            else:
+                failed_requests[store_api_url] = res.status_code
+                consecutive_failed += 1
+                if consecutive_failed == MAX_CONSECUTIVE_FAIL_ALLOWED:
+                    raise RuntimeError(
+                        f'URGENT: Something wrong with the website. '
+                        f'Failed to request {MAX_CONSECUTIVE_FAIL_ALLOWED} '
+                        f'different URLs consecutively. {failed_requests}'
+                    )
+                continue
 
-        store_data = res.json()['data']
-        store_data['extracted_on'] = (
-            datetime.now(timezone.utc).strftime('%Y-%m-%dT%TZ')
-        )
-        file_path = os.path.join(EXTRACTED_STORES_DIRECTORY, f'{slug}.json')  # noqa
-        with open(file_path, 'w') as f:
-            json.dump(store_data, f, indent=2)
-        done += 1
-        if done % 10 == 0:
-            print(f'Done: [{done} - {total}]')
+            store_data = res.json()['data']
+            store_data['extracted_on'] = (
+                datetime.now(timezone.utc).strftime('%Y-%m-%dT%TZ')
+            )
+            file_path = os.path.join(EXTRACTED_STORES_DIRECTORY, f'{slug}.json')  # noqa
+            with open(file_path, 'w') as f:
+                json.dump(store_data, f, indent=2)
+            done += 1
+            if done % 10 == 0:
+                print(f'Done: [{done} - {total}]')
+        except Exception as err:
+            raise Exception(
+                f'Got Error while extracting store {slug}. Error: {err}'
+            )
     print(
         f'All the extracted products have been kept '
         f'@ {EXTRACTED_PRODUCTS_DIRECTORY}'

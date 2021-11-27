@@ -11,6 +11,8 @@ import os
 import sys
 from datetime import datetime
 
+from html2text import html2text
+
 from constants import (
     COMPILED_RESTAURANTS_DIRECTORY,
     COUNTRY,
@@ -30,11 +32,11 @@ if argv and len(argv) == 1:
     elif argv[0] == '--N':
         COMPILE_ALL = False
     else:
-        print(err_msg)
+        raise ValueError(err_msg)
 else:
-    print(err_msg)
+    raise ValueError(err_msg)
 
-STORE_BASE_URL = 'https://www.airasia.com/grocer/my/en/merchant/'
+STORE_BASE_URL = 'https://www.airasia.com/grocer/my/en/merchant'
 
 CURRENCY = 'MYR'  # Malaysian Ringgit
 VENDOR_TYPE = 'Grocer'
@@ -106,48 +108,55 @@ if store_files_path:
     compiled = 0
     print(f'Total store to be processed: {total}')
     for store_file_path in store_files_path:
-        with open(store_file_path, 'r') as f:
-            store = json.load(f)
-        slug = store_file_path.split('/')[-1][:-5]
-        uuid = store['uuid']
-        if COMPILE_ALL or uuid not in compiled_restaurants_ids:
-            store_url = f'{STORE_BASE_URL}/{slug}'
-            restaurant = {
-                'timestamp': store['extracted_on'],
-                'source': SOURCE,
-                'country_code': COUNTRY.upper(),
-                'url': store_url,
-                'name': store['name'],
-                'latitude': float(store['lat']),
-                'longitude': float(store['long']),
-                'address': store['location'],
-                'street_address': store.get('address_level_2'),
-                'postal_code': store.get('postal_code'),
-                'city': store.get('address_level_3'),
-                'phone_number': store.get('phone'),
-                'restaurant_id': store['uuid'],
-                'currency': CURRENCY,
-                'restaurant_description': store.get('description'),
-                'menu_url': store_url,
-                'live_at': store.get('opened_at'),
-                'is_free_delivery': (
-                    True if store['delivery_fee'] else False
-                    if 'delivery_fee' in store else None
-                ),
-                'vendor_type': VENDOR_TYPE,
-                'restaurant_url': 'store_url',
-                'pickup_enabled': (
-                    True if store['is_self_pickup'] else False
-                    if 'is_self_pickup' in store else None
-                ),
-                'unmapped': {}
-            }
-            add_blank_values(restaurant)
-            restaurants.append(restaurant)
-            compiled += 1
-        done += 1
-        if done % 10 == 0 or done == total:
-            print(f'Done: [{done} - {total}]')
+        try:
+            with open(store_file_path, 'r') as f:
+                store = json.load(f)
+            slug = store_file_path.split('/')[-1][:-5]
+            uuid = store['uuid']
+            if COMPILE_ALL or uuid not in compiled_restaurants_ids:
+                store_url = f'{STORE_BASE_URL}/{slug}'
+                restaurant = {
+                    'timestamp': store['extracted_on'],
+                    'source': SOURCE,
+                    'country_code': COUNTRY.upper(),
+                    'url': store_url,
+                    'name': store['name'],
+                    'latitude':
+                        float(store['lat']) if store['lat'] else None,
+                    'longitude':
+                        float(store['long']) if store['long'] else None,
+                    'address': store['location'],
+                    'street_address': store['address_level_2'],
+                    'postal_code': store['postal_code'],
+                    'city': store['address_level_3'],
+                    'phone_number': store['phone'],
+                    'restaurant_id': store['uuid'],
+                    'currency': CURRENCY,
+                    'restaurant_description': (
+                        html2text(store['description'])
+                        if 'description' in store else ""
+                    ),
+                    'menu_url': store_url,
+                    'live_at': store['opened_at'].split(' ')[0] if store['opened_at'] else None,  # noqa
+                    'is_free_delivery':
+                        True if store['delivery_fee'] == 1 else False if store['delivery_fee'] == 0 else None,  # noqa
+                    'vendor_type': VENDOR_TYPE,
+                    'restaurant_url': 'store_url',
+                    'pickup_enabled': (
+                        True if store['is_self_pickup'] == 1 else False if store['is_self_pickup'] == 0 else None,  # noqa
+                    ),
+                    'unmapped': {}
+                }
+                add_blank_values(restaurant)
+                restaurants.append(restaurant)
+                compiled += 1
+            done += 1
+            if done % 10 == 0 or done == total:
+                print(f'Done: [{done} - {total}]')
+        except Exception as err:
+            raise Exception(
+                f'Got Error while compiling {store_file_path}. Error: {err}'
+            )
 
 else:
     print(f'URGENT: No extracted stores @ {EXTRACTED_STORES_DIRECTORY}')

@@ -33,9 +33,9 @@ if argv and len(argv) == 1:
     elif argv[0] == '--N':
         COMPILE_FOR_ALL_STORES = False
     else:
-        print(err_msg)
+        raise ValueError(err_msg)
 else:
-    print(err_msg)
+    raise ValueError(err_msg)
 
 ITEM_NULL_KEYS = [
     'item_id', 'item_name', 'price', 'price_unit', 'description', 'image_url',
@@ -75,7 +75,7 @@ def update_items(product, items):
             html2text(product['description']) if product['description'] else ""
         ),
         'available': (
-            True if product['option_groups'][0]['quantity'] else False
+            True if product['option_groups'] and product['option_groups'][0]['quantity'] else False  # noqa
         ),
         'price': float(
             product['discount_price'] if product['discount_price']
@@ -114,35 +114,43 @@ if products_files_path:
     compiled = 0
     done = 0
     for products_file_path in products_files_path:
-        with open(products_file_path, 'r') as f:
-            data = json.load(f)
-            extracted_on = data['extracted_on']
-            products = data['products'] or []
-        slug = products_file_path.split('/')[-1][:-5]
-        if products:
-            store_uuid = products[0]['store']['uuid']
-            if COMPILE_FOR_ALL_STORES or store_uuid not in compiled_products_stores_ids:  # noqa
-                menu = {
-                    'timestamp': extracted_on,
-                    'source': SOURCE,
-                    'country_code': COUNTRY,
-                    'restaurant_id': store_uuid,
-                }
-                p_items = []
-                p_categories = defaultdict(dict)
-                for product in products:
-                    update_items(product, p_items)
-                    update_categories(product, p_categories)
-                menu['categories'] = list(p_categories.values())
-                menu['items'] = p_items
-                menu['unmapped'] = {}
-                menus.append(menu)
-                compiled += 1
-        else:
-            no_products.append(slug)
-        done += 1
-        if done % 10 == 0 or done == total:
-            print(f'Done: [{done} - {total}]')
+        p_id = None
+        try:
+            slug = products_file_path.split('/')[-1][:-5]
+            with open(products_file_path, 'r') as f:
+                data = json.load(f)
+                extracted_on = data['extracted_on']
+                products = data['products'] or []
+            if products:
+                store_uuid = products[0]['store']['uuid']
+                if COMPILE_FOR_ALL_STORES or store_uuid not in compiled_products_stores_ids:  # noqa
+                    menu = {
+                        'timestamp': extracted_on,
+                        'source': SOURCE,
+                        'country_code': COUNTRY,
+                        'restaurant_id': store_uuid,
+                    }
+                    p_items = []
+                    p_categories = defaultdict(dict)
+                    for product in products:
+                        p_id = product['uuid']
+                        update_items(product, p_items)
+                        update_categories(product, p_categories)
+                    menu['category'] = list(p_categories.values())
+                    menu['items'] = p_items
+                    menu['unmapped'] = {}
+                    menus.append(menu)
+                    compiled += 1
+            else:
+                no_products.append(slug)
+            done += 1
+            if done % 10 == 0 or done == total:
+                print(f'Done: [{done} - {total}]')
+        except Exception as err:
+            raise Exception(
+                f'Got Error while compiling '
+                f'Product id: {p_id} from {products_file_path}. Error: {err}'
+            )
 else:
     print(f'URGENT: No extracted products @ {EXTRACTED_PRODUCTS_DIRECTORY}')
 
