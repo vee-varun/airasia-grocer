@@ -11,6 +11,8 @@
 """
 
 import requests
+
+
 # url = "https://bee.apiairasia.com/menu/v1/products-aa?limit=18&page=1&type_id=1&tag_carousel_uuid=fresh-express-same-day-delivery&postal_codes="
 url = "https://bee.apiairasia.com/menu/v1/products-aa?multiple_category=1&alcohol=0&tag_uuid=&limit=20&page=5&type_id=1&tag_carousel_uuid=2021-malaysian-favourites&postal_codes="
 url = "https://bee.apiairasia.com/menu/v1/products-aa?category_uuid=9969adfb-2062-4ba1-a3a3-866ff8c69bfa&multiple_category=1&alcohol=0&limit=20&page=1&type_id=1&postal_codes="

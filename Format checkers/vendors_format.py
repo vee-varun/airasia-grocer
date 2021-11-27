@@ -1,26 +1,43 @@
 import json
-import gspread
-from oauth2client.service_account import ServiceAccountCredentials
 
-def getsheet(sheet_key, sheet_name):
-	scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-	credentials = ServiceAccountCredentials.from_json_keyfile_name('foodpanda-sheets-api.json', scope)
-	gc = gspread.authorize(credentials)
-	sheet = gc.open_by_key(sheet_key)
-	for s in sheet.worksheets():
-		if sheet_name == s.title:
-			worksheet = sheet.worksheet(sheet_name)
-			# print ("Already Sheet", sheet_name)
-			csvdata = worksheet.get_all_values()
-			return csvdata
-	if not 'worksheet' in locals(): #If there is no variable by the name worksheet in the function
-		return []
+# import gspread
+# from oauth2client.service_account import ServiceAccountCredentials
+#
+#
+# def getsheet(sheet_key, sheet_name):
+# 	scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
+# 	credentials = ServiceAccountCredentials.from_json_keyfile_name('foodpanda-sheets-api.json', scope)
+# 	gc = gspread.authorize(credentials)
+# 	sheet = gc.open_by_key(sheet_key)
+# 	for s in sheet.worksheets():
+# 		if sheet_name == s.title:
+# 			worksheet = sheet.worksheet(sheet_name)
+# 			# print ("Already Sheet", sheet_name)
+# 			csvdata = worksheet.get_all_values()
+# 			return csvdata
+# 	if not 'worksheet' in locals(): #If there is no variable by the name worksheet in the function
+# 		return []
+#
+# sheetdata = getsheet('1tw23yiZq4-o6G9XhhVVELUODh-FKyobTTt1vjSKpC8I', "Restaurant")
+# fpformat = {}
+# for row in sheetdata[1:]:
+# 	fpformat[row[0]] = row[2]
+import glob
 
-sheetdata = getsheet('1tw23yiZq4-o6G9XhhVVELUODh-FKyobTTt1vjSKpC8I', "Restaurant")
-fpformat = {}
-for row in sheetdata[1:]:
-	fpformat[row[0]] = row[2]
+from constants import COMPILED_RESTAURANTS_DIRECTORY
 
+compiled_restaurant_files = list(
+	glob.glob(COMPILED_RESTAURANTS_DIRECTORY+'/*txt')
+)
+compiled_restaurants = []
+if compiled_restaurant_files:
+	# picking the previous one
+	compiled_restaurant_file = sorted(compiled_restaurant_files)[-1]
+	with open(compiled_restaurant_file, 'r') as f:
+		compiled_restaurants = [json.loads(item) for item in f.readlines()]
+
+
+finalrestaurants = compiled_restaurants
 myformat = []
 for resindex,res in enumerate(finalrestaurants):
 	data_variables = {}
